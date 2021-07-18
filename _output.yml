@@ -1,0 +1,30 @@
+bookdown::gitbook:
+  highlight: tango
+  css:
+  config:
+    toc: 
+      before: 
+        <li><center><img src="bca.png"><H3><b><font color="F26531">
+        Machine Learning for Biostatistics
+        </font>
+        </b></H3>
+        <a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><small><i>
+        Back to canvas website 
+       </i></small></a></center></li>
+      after: 
+        <li><center><a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><img src="usyd2.gif" width="60%"></a>
+        <small>© A.Teixeira-Pinto, University of Sydney, 2021</small></center></li>
+    edit: 
+    download: ["pdf"]
+    search: yes
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+
+bookdown::pdf_book:
+  includes:
+  latex_engine: pdflatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
