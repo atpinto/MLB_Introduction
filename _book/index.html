@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Machine Learning for Biostatistics</title>
+  <meta name="description" content="Machine Learning for Biostatistics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Machine Learning for Biostatistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Machine Learning for Biostatistics" />
+  
+  
+  
+
+<meta name="author" content="Armando Teixeira-Pinto" />
+
+
+<meta name="date" content="2021-07-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="supervised-and-unsupervised-learning.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="bca.png"><H3><b><font color="F26531"> Machine Learning for Biostatistics </font> </b></H3> <a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><small><i> Back to canvas website </i></small></a></center></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>What is machine learning?</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#datasets-used-in-the-examples"><i class="fa fa-check"></i>Datasets used in the examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html"><i class="fa fa-check"></i><b>1</b> Supervised and unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#readings"><i class="fa fa-check"></i><b>1.2</b> Readings</a></li>
+<li class="chapter" data-level="1.3" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#r-review"><i class="fa fa-check"></i><b>1.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-1---read-a-dataset-and-create-a-new-variable"><i class="fa fa-check"></i>Task 1 - Read a dataset and create a new variable</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-2---histogram"><i class="fa fa-check"></i>Task 2 - Histogram</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-3---scatter-and-boxplot"><i class="fa fa-check"></i>Task 3 - Scatter and boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-accuracy.html"><a href="model-accuracy.html"><i class="fa fa-check"></i><b>2</b> Model Accuracy</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.intro"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.read"><i class="fa fa-check"></i><b>2.2</b> Readings</a></li>
+<li class="chapter" data-level="2.3" data-path="model-accuracy.html"><a href="model-accuracy.html#R.02"><i class="fa fa-check"></i><b>2.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-accuracy.html"><a href="model-accuracy.html#task-1---using-libraries"><i class="fa fa-check"></i><b>2.3.1</b> Task 1 - Using libraries</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-accuracy.html"><a href="model-accuracy.html#task-2---using-ggplot"><i class="fa fa-check"></i><b>2.3.2</b> Task 2 - Using ggplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-accuracy.html"><a href="model-accuracy.html#task-3---writing-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 - Writing a function</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><center><a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><img src="usyd2.gif" width="60%"></a> <small>© A.Teixeira-Pinto, University of Sydney, 2021</small></center></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning for Biostatistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Machine Learning for Biostatistics</h1>
+<h2 class="subtitle"><em>Module 1</em></h2>
+<p class="author"><em>Armando Teixeira-Pinto</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-07-18</em></p>
+</div>
+<div id="what-is-machine-learning" class="section level1 unnumbered">
+<h1>What is machine learning?</h1>
+<iframe width="784" height="441" src="https://www.youtube.com/embed/HQO_VOWkWjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>We came a long way since the term <em>artificial intelligence</em> was first used by
+John McCarthy in the 50’s. We still don’t have computers capable of conversations
+such as Hal 9000 from the movie 2001: A space odyssey, but we can easily
+identify some traces of <em>synthetic intelligence</em> in many of our interactions
+with electronic devices.</p>
+<p><img src="hal.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>When we ask something to <em>Siri</em> or <em>Alexa</em>, when we do a
+search in the web, when we get recommendations for
+movies or shopping, when our car “reacts” to the proximity of other objects,
+when our spam email is filtered,
+when we play chess against a computer or when we are automatically
+identified in photos posted in social media, these are some simple examples of
+sophisticated systems that, one way or another, interpret the environment and
+take actions or make decision that maximize their chances of success.</p>
+<p>Several examples can be also found in medical practice, such as patients’
+access to healthcare (e.g., <a href="https://search.proquest.com/openview/bf25c0b78beeffec5b3419ea7ffc79f9/1?pq-origsite=gscholar&amp;cbl=2042228">Babylon</a>), cancer diagnosis (e.g, <a href="https://jamanetwork.com/journals/jama/article-abstract/2665774">PathAI</a>),
+medical imaging (e.g., <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=55060">Zebra Medical Vision</a>), diagnostic
+support systems
+(e.g., <a href="https://www.bizjournals.com/boston/news/2018/08/22/boston-childrens-website-to-feature-self.html">Buoy Health</a>) and drugs’ development.</p>
+<p><img src="robot.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<p>In parallel with the development and dissemination of AI, we have also witness a
+a true data revolution in the past 30 years and a paradigm shift. Data used to
+be limited and “expensive” to acquire, whereas nowadays we produce more data than
+we can process. Many of our daily actions are stored in different databases
+around the world.</p>
+<p>This is of particular relevance because AI systems, similar to the way our
+brain works, rely on two principles to “learn”: deduction and induction (I
+could also include abduction but trying to maintain things simple). Initial
+AI systems relied heavily in deductive methods. The system was given (taught)
+several rules and based on these rules and logic principles the
+system could act. A complementary approach is to “learn”
+by recognising patterns in the data fed to the system.</p>
+<p><img src="induction.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The challenges brought by new problems and the availability of data in
+different format (image, video, text, …) required new approaches outside of
+the traditional statistical methods. Scientists with computer science and
+engineering background, as well as statisticians, tackled these problems and
+developed new methods and algorithms that take advantage of both large amounts
+of data, and computational power. Despite the clear overlap with statistics,
+the rapid development of this area, the major contribution from
+non-statisticians to these methods, and the specificity of some of the problems,
+fostered the creation of an independent scientific subject: <strong>Machine Learning</strong>.
+Coming from statistical background (and
+maybe with narrower focus) we could also call it <strong>Statistical Learning</strong>. In
+fact, you may notice that the latter is used in the book we will follow.</p>
+<p><img src="pattern.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<p>An interesting perspective about <a href="https://towardsdatascience.com/the-actual-difference-between-statistics-and-machine-learning-64b49f07ea3">Machine Learning vs Statistics is presented
+by M. Stewart</a>.</p>
+<div id="datasets-used-in-the-examples" class="section level2 unnumbered">
+<h2>Datasets used in the examples</h2>
+<p>The file <a href="https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1">bmd.csv</a>
+contains 169 records of bone densitometries (measurement of
+bone mineral density). The following variables were collected:</p>
+<ul>
+<li>id – patient’s number<br />
+</li>
+<li>age – patient’s age</li>
+<li>fracture – hip fracture (fracture / no fracture)</li>
+<li>weight_kg – weight measured in Kg</li>
+<li>height_cm – height measure in cm<br />
+</li>
+<li>waiting_time – time the patient had to wait for the densitometry (in minutes)</li>
+<li>bmd – bone mineral density measure in the hip</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="supervised-and-unsupervised-learning.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

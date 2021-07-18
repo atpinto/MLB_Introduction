@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Supervised and unsupervised learning | Machine Learning for Biostatistics</title>
+  <meta name="description" content="1 Supervised and unsupervised learning | Machine Learning for Biostatistics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Supervised and unsupervised learning | Machine Learning for Biostatistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Supervised and unsupervised learning | Machine Learning for Biostatistics" />
+  
+  
+  
+
+<meta name="author" content="Armando Teixeira-Pinto" />
+
+
+<meta name="date" content="2021-07-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="model-accuracy.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="bca.png"><H3><b><font color="F26531"> Machine Learning for Biostatistics </font> </b></H3> <a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><small><i> Back to canvas website </i></small></a></center></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>What is machine learning?</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#datasets-used-in-the-examples"><i class="fa fa-check"></i>Datasets used in the examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html"><i class="fa fa-check"></i><b>1</b> Supervised and unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#readings"><i class="fa fa-check"></i><b>1.2</b> Readings</a></li>
+<li class="chapter" data-level="1.3" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#r-review"><i class="fa fa-check"></i><b>1.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-1---read-a-dataset-and-create-a-new-variable"><i class="fa fa-check"></i>Task 1 - Read a dataset and create a new variable</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-2---histogram"><i class="fa fa-check"></i>Task 2 - Histogram</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-3---scatter-and-boxplot"><i class="fa fa-check"></i>Task 3 - Scatter and boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-accuracy.html"><a href="model-accuracy.html"><i class="fa fa-check"></i><b>2</b> Model Accuracy</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.intro"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.read"><i class="fa fa-check"></i><b>2.2</b> Readings</a></li>
+<li class="chapter" data-level="2.3" data-path="model-accuracy.html"><a href="model-accuracy.html#R.02"><i class="fa fa-check"></i><b>2.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-accuracy.html"><a href="model-accuracy.html#task-1---using-libraries"><i class="fa fa-check"></i><b>2.3.1</b> Task 1 - Using libraries</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-accuracy.html"><a href="model-accuracy.html#task-2---using-ggplot"><i class="fa fa-check"></i><b>2.3.2</b> Task 2 - Using ggplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-accuracy.html"><a href="model-accuracy.html#task-3---writing-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 - Writing a function</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><center><a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><img src="usyd2.gif" width="60%"></a> <small>© A.Teixeira-Pinto, University of Sydney, 2021</small></center></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning for Biostatistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="supervised-and-unsupervised-learning" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Supervised and unsupervised learning</h1>
+<div id="introduction" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction</h2>
+<p>The methods in <strong>machine learning</strong> can be broadly divided into <strong>supervised</strong> and
+<strong>unsupervised</strong> learning methods.</p>
+<p>In <strong>supervised learning</strong>, we have an outcome variable <span class="math inline">\(Y\)</span> (also called output,
+response, dependent variable) and a set of predictors <span class="math inline">\(\mathbf{X}\)</span> (also called
+features, dependent variables, covariates). The objective is to estimate
+the function <span class="math inline">\(f(\mathbf{X})\)</span> that connects <span class="math inline">\(Y\)</span> and <span class="math inline">\(\mathbf{X}\)</span>. For example,</p>
+<p><span class="math display">\[
+Y = f(\mathbf{X}) + \varepsilon
+\]</span></p>
+<p>(if <span class="math inline">\(Y\)</span> is categorical we generally consider the association of <span class="math inline">\(\mathbf{X}\)</span> and
+the <span class="math inline">\(Pr(Y=k)\)</span>)</p>
+<p>Having a dataset with observations of <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> (called training set), we can
+use these data to find an estimate <span class="math inline">\(\hat f(\mathbf{X})\)</span> according to some
+optimisation principle.</p>
+<p>If we specify a functional for <span class="math inline">\(f(\mathbf{X})\)</span>, such as the linear regression
+model:<span class="math inline">\(f(\mathbf{X}) = \beta_0 + \beta_1X_1 + ... + \beta_p X_p\)</span>, we say that
+we are using a <em>parametric</em> method. If instead we allow the data to estimate
+the functional form of <span class="math inline">\(f(\mathbf{X})\)</span>, such as k-nearest neighbourhood
+regression, we call the method <em>non-parametric</em>.</p>
+<p>In <strong>unsupervised learning</strong> , the goal is to model the
+underlying structure or distribution in the data without having the outcome <span class="math inline">\(Y\)</span>.
+In other words, we want to analyse how the features <span class="math inline">\(\mathbf{X}\)</span> are <em>clustered</em>
+or <em>associated</em>. Examples of these methods are <em>principle components analysis</em>
+and <em>k-means clustering</em>.</p>
+</div>
+<div id="readings" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Readings</h2>
+<p>Read the following chapters of <em>An introduction to statistical learning</em>:</p>
+<ul>
+<li>2.1 <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf#page=28">What is statistical learning</a></li>
+</ul>
+<p>If you are using R for the first time, I encourage you to complete the section</p>
+<ul>
+<li>2.3 <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf#page=5">Introduction to R</a></li>
+</ul>
+</div>
+<div id="r-review" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> R review</h2>
+<div id="task-1---read-a-dataset-and-create-a-new-variable" class="section level3 unnumbered">
+<h3>Task 1 - Read a dataset and create a new variable</h3>
+<p>Read the <a href="https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1">bmd.csv</a>
+dataset in R. You can download and read the data or use the path <em><a href="https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1" class="uri">https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1</a></em></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="supervised-and-unsupervised-learning.html#cb1-1" aria-hidden="true" tabindex="-1"></a>bmd.data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1&quot;</span>)</span></code></pre></div>
+<p>If you have downloaded the file, you need to substitute the <em>url</em> above by
+the path to file in your computer, e.g., “c:\my files\bmd.csv”</p>
+<p>The variable <strong>id</strong> is the identification of the subjects in the dataset, and
+the variable <strong>age</strong> is their age. What is the age of the subject id=197?</p>
+<p><code>bmd.data$age</code> is the vector with the ages of all the subjects. Within that
+vector we need to find the one where <code>bmd.data$id == 197</code>. Notice that double
+equal sign “==” is a logic statement.</p>
+<p>If we write <code>bmd.data$id = 197</code> we are
+assigning the value 197 to the variable <strong>id</strong> and every subject in the dataset
+gets a new value 197 for that variable.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="supervised-and-unsupervised-learning.html#cb2-1" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age[bmd.data<span class="sc">$</span>id <span class="sc">==</span> <span class="dv">197</span>]</span></code></pre></div>
+<pre><code>## [1] 69.72845</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="supervised-and-unsupervised-learning.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or equivalent</span></span>
+<span id="cb4-2"><a href="supervised-and-unsupervised-learning.html#cb4-2" aria-hidden="true" tabindex="-1"></a>bmd.data[bmd.data<span class="sc">$</span>id <span class="sc">==</span> <span class="dv">197</span>, <span class="st">&quot;age&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] 69.72845</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="supervised-and-unsupervised-learning.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
+<span id="cb6-2"><a href="supervised-and-unsupervised-learning.html#cb6-2" aria-hidden="true" tabindex="-1"></a>bmd.data[bmd.data<span class="sc">$</span>id <span class="sc">==</span> <span class="dv">197</span>, <span class="dv">2</span>]  <span class="co">#age is the second variable</span></span></code></pre></div>
+<pre><code>## [1] 69.72845</code></pre>
+<p>Let’s now create a new variable <strong>age.months</strong> which is age in months (the
+original is in years).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="supervised-and-unsupervised-learning.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we just need to multiply the original by 12</span></span>
+<span id="cb8-2"><a href="supervised-and-unsupervised-learning.html#cb8-2" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.months <span class="ot">&lt;-</span> bmd.data<span class="sc">$</span>age <span class="sc">*</span> <span class="dv">12</span></span>
+<span id="cb8-3"><a href="supervised-and-unsupervised-learning.html#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="supervised-and-unsupervised-learning.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we can use = instead of &lt;- </span></span>
+<span id="cb8-5"><a href="supervised-and-unsupervised-learning.html#cb8-5" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.months <span class="ot">=</span> bmd.data<span class="sc">$</span>age <span class="sc">*</span> <span class="dv">12</span></span></code></pre></div>
+<p>Finally, let’s recode the variable <strong>age</strong> into age categories &lt;=50, (50,60],
+(60,70] and &gt;60.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="supervised-and-unsupervised-learning.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can use the function cut() to </span></span>
+<span id="cb9-2"><a href="supervised-and-unsupervised-learning.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#create the categories</span></span>
+<span id="cb9-3"><a href="supervised-and-unsupervised-learning.html#cb9-3" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.cat <span class="ot">&lt;-</span> <span class="fu">cut</span>(bmd.data<span class="sc">$</span>age, </span>
+<span id="cb9-4"><a href="supervised-and-unsupervised-learning.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>, <span class="dv">100</span>))</span>
+<span id="cb9-5"><a href="supervised-and-unsupervised-learning.html#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="supervised-and-unsupervised-learning.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative </span></span>
+<span id="cb9-7"><a href="supervised-and-unsupervised-learning.html#cb9-7" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.cat2[bmd.data<span class="sc">$</span>age<span class="sc">&lt;</span><span class="dv">50</span>]                    <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb9-8"><a href="supervised-and-unsupervised-learning.html#cb9-8" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.cat2[bmd.data<span class="sc">$</span>age<span class="sc">&gt;=</span><span class="dv">50</span> <span class="sc">&amp;</span> bmd.data<span class="sc">$</span>age<span class="sc">&lt;</span><span class="dv">60</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb9-9"><a href="supervised-and-unsupervised-learning.html#cb9-9" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.cat2[bmd.data<span class="sc">$</span>age<span class="sc">&gt;=</span><span class="dv">60</span> <span class="sc">&amp;</span> bmd.data<span class="sc">$</span>age<span class="sc">&lt;</span><span class="dv">70</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb9-10"><a href="supervised-and-unsupervised-learning.html#cb9-10" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age.cat2[bmd.data<span class="sc">$</span>age<span class="sc">&gt;=</span><span class="dv">70</span>]                   <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb9-11"><a href="supervised-and-unsupervised-learning.html#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="supervised-and-unsupervised-learning.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#frequencies of the categories</span></span>
+<span id="cb9-13"><a href="supervised-and-unsupervised-learning.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bmd.data<span class="sc">$</span>age.cat)</span></code></pre></div>
+<pre><code>## 
+##   (0,50]  (50,60]  (60,70] (70,100] 
+##       24       45       48       52</code></pre>
+<p><strong>TRY IT YOURSELF:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Get the ages for all the male subjects, i.e., <code>bmd.data$sex == "M"</code>.</li>
+</ol>
+<details>
+<summary>
+See the solution code
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="supervised-and-unsupervised-learning.html#cb11-1" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>age[bmd.data<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>]  </span></code></pre></div>
+</details>
+<p>
+<p>
+<ol start="2" style="list-style-type: decimal">
+<li>What is the length of the vector above? Or, in other words, how many subjects
+are male?</li>
+</ol>
+<details>
+<summary>
+See the solution code
+</summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="supervised-and-unsupervised-learning.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(bmd.data<span class="sc">$</span>age[bmd.data<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>])</span>
+<span id="cb12-2"><a href="supervised-and-unsupervised-learning.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="supervised-and-unsupervised-learning.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb12-4"><a href="supervised-and-unsupervised-learning.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bmd.data<span class="sc">$</span>sex)</span></code></pre></div>
+</details>
+<p>
+<p>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the variables <strong>weight_kg</strong> and <strong>height_cm</strong>, compute the body mass
+index?
+<span class="math inline">\(\frac{\text{weight in Kg}}{(\text{heigh in m})^2}\)</span></li>
+</ol>
+<details>
+<summary>
+See the solution code
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="supervised-and-unsupervised-learning.html#cb13-1" aria-hidden="true" tabindex="-1"></a>bmd.data<span class="sc">$</span>bmi <span class="ot">&lt;-</span> bmd.data<span class="sc">$</span>weight_kg <span class="sc">/</span>(bmd.data<span class="sc">$</span>height_cm<span class="sc">/</span><span class="dv">100</span>)<span class="sc">**</span><span class="dv">2</span></span></code></pre></div>
+</details>
+<p>
+<p>
+</div>
+<div id="task-2---histogram" class="section level3 unnumbered">
+<h3>Task 2 - Histogram</h3>
+<p>There are several packages specific to graphs
+<code>ggplot2</code>, <code>lattice</code>, <code>plotly</code>, <code>highcharter</code>, <code>sunburstR</code>, <code>dygraphs</code>, <code>rgl</code>,…
+The <a href="https://www.r-graph-gallery.com/index.html">R Graph Gallery</a> is an excellent
+learning resource for complex plots and visualisation</p>
+<p>We will start with basic functions. Let’s produce the histogram of the variable
+<strong>bmi</strong> created in task 1</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="supervised-and-unsupervised-learning.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(bmd.data<span class="sc">$</span>bmi)</span></code></pre></div>
+<p><img src="_main_files/figure-html/hisbmi%20-1.png" width="672" /></p>
+<p>Let’s edit the title and x-axis label</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="supervised-and-unsupervised-learning.html#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(bmd.data<span class="sc">$</span>bmi, </span>
+<span id="cb15-2"><a href="supervised-and-unsupervised-learning.html#cb15-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;My 1st histogram&quot;</span>,     </span>
+<span id="cb15-3"><a href="supervised-and-unsupervised-learning.html#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;Body Mass Index&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/hisbmi2%20-1.png" width="672" /></p>
+<p>And we can also plot the distribution for males and females, separately</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="supervised-and-unsupervised-learning.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram for males</span></span>
+<span id="cb16-2"><a href="supervised-and-unsupervised-learning.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(bmd.data<span class="sc">$</span>bmi[bmd.data<span class="sc">$</span>sex<span class="sc">==</span><span class="st">&quot;M&quot;</span> ],</span>
+<span id="cb16-3"><a href="supervised-and-unsupervised-learning.html#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">10</span>,                  <span class="co"># number of cutoff for the bars</span></span>
+<span id="cb16-4"><a href="supervised-and-unsupervised-learning.html#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span> <span class="st">&quot;My 1st histogram&quot;</span>,  </span>
+<span id="cb16-5"><a href="supervised-and-unsupervised-learning.html#cb16-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
+<span id="cb16-6"><a href="supervised-and-unsupervised-learning.html#cb16-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">5</span>))           <span class="co"># color of the bars</span></span>
+<span id="cb16-7"><a href="supervised-and-unsupervised-learning.html#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="supervised-and-unsupervised-learning.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram for females</span></span>
+<span id="cb16-9"><a href="supervised-and-unsupervised-learning.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(bmd.data<span class="sc">$</span>bmi[bmd.data<span class="sc">$</span>sex<span class="sc">==</span><span class="st">&quot;F&quot;</span> ],</span>
+<span id="cb16-10"><a href="supervised-and-unsupervised-learning.html#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="dv">10</span>,</span>
+<span id="cb16-11"><a href="supervised-and-unsupervised-learning.html#cb16-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span> <span class="st">&quot;My 1st histogram&quot;</span>,</span>
+<span id="cb16-12"><a href="supervised-and-unsupervised-learning.html#cb16-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span> <span class="st">&quot;Body Mass Index&quot;</span>, </span>
+<span id="cb16-13"><a href="supervised-and-unsupervised-learning.html#cb16-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>),</span>
+<span id="cb16-14"><a href="supervised-and-unsupervised-learning.html#cb16-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">add=</span>T)                      <span class="co"># superimposes the histograms</span></span>
+<span id="cb16-15"><a href="supervised-and-unsupervised-learning.html#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="supervised-and-unsupervised-learning.html#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
+<span id="cb16-17"><a href="supervised-and-unsupervised-learning.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,  </span>
+<span id="cb16-18"><a href="supervised-and-unsupervised-learning.html#cb16-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Males&quot;</span>,<span class="st">&quot;Females&quot;</span>), </span>
+<span id="cb16-19"><a href="supervised-and-unsupervised-learning.html#cb16-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),  <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>)), </span>
+<span id="cb16-20"><a href="supervised-and-unsupervised-learning.html#cb16-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">pt.cex=</span><span class="dv">2</span>, <span class="at">pch=</span><span class="dv">15</span> )</span></code></pre></div>
+<p><img src="_main_files/figure-html/hisbmi3%20-1.png" width="672" /></p>
+</div>
+<div id="task-3---scatter-and-boxplot" class="section level3 unnumbered">
+<h3>Task 3 - Scatter and boxplot</h3>
+<p>To see the relation between bone mineral density (<strong>BMD</strong>) and <strong>age</strong> we
+can produce a scatter plot:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="supervised-and-unsupervised-learning.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BMD </span></span>
+<span id="cb17-2"><a href="supervised-and-unsupervised-learning.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmd.data<span class="sc">$</span>age,bmd.data<span class="sc">$</span>bmd)</span></code></pre></div>
+<p><img src="_main_files/figure-html/scatage%20-1.png" width="672" /></p>
+<p>Or a boxplot between bone mineral density (<strong>BMD</strong>) by categories of age created
+in task 1</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="supervised-and-unsupervised-learning.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BMD </span></span>
+<span id="cb18-2"><a href="supervised-and-unsupervised-learning.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(bmd.data<span class="sc">$</span>bmd <span class="sc">~</span> bmd.data<span class="sc">$</span>age.cat)</span></code></pre></div>
+<p><img src="_main_files/figure-html/bpage%20-1.png" width="672" /></p>
+<p>And with a bit more work:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="supervised-and-unsupervised-learning.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BMD </span></span>
+<span id="cb19-2"><a href="supervised-and-unsupervised-learning.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(bmd.data<span class="sc">$</span>bmd <span class="sc">~</span> bmd.data<span class="sc">$</span>age.cat, </span>
+<span id="cb19-3"><a href="supervised-and-unsupervised-learning.html#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;A nice boxplot (at least for a colorblind)&quot;</span>,</span>
+<span id="cb19-4"><a href="supervised-and-unsupervised-learning.html#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Age categories&quot;</span>,</span>
+<span id="cb19-5"><a href="supervised-and-unsupervised-learning.html#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Bone Mineral Density&quot;</span>,</span>
+<span id="cb19-6"><a href="supervised-and-unsupervised-learning.html#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col  =</span> <span class="fu">terrain.colors</span>(<span class="dv">4</span>) ) </span>
+<span id="cb19-7"><a href="supervised-and-unsupervised-learning.html#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="supervised-and-unsupervised-learning.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add data points</span></span>
+<span id="cb19-9"><a href="supervised-and-unsupervised-learning.html#cb19-9" aria-hidden="true" tabindex="-1"></a>mylevels         <span class="ot">&lt;-</span> <span class="fu">levels</span>(bmd.data<span class="sc">$</span>age.cat) </span>
+<span id="cb19-10"><a href="supervised-and-unsupervised-learning.html#cb19-10" aria-hidden="true" tabindex="-1"></a>levelProportions <span class="ot">&lt;-</span> <span class="fu">summary</span>(bmd.data<span class="sc">$</span>age.cat)<span class="sc">/</span><span class="fu">nrow</span>(bmd.data) </span>
+<span id="cb19-11"><a href="supervised-and-unsupervised-learning.html#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="supervised-and-unsupervised-learning.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mylevels)){ </span>
+<span id="cb19-13"><a href="supervised-and-unsupervised-learning.html#cb19-13" aria-hidden="true" tabindex="-1"></a>  thislevel  <span class="ot">&lt;-</span> mylevels[i] </span>
+<span id="cb19-14"><a href="supervised-and-unsupervised-learning.html#cb19-14" aria-hidden="true" tabindex="-1"></a>  thisvalues <span class="ot">&lt;-</span> bmd.data[bmd.data<span class="sc">$</span>age.cat <span class="sc">==</span> thislevel, <span class="st">&quot;bmd&quot;</span>] </span>
+<span id="cb19-15"><a href="supervised-and-unsupervised-learning.html#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#take the x-axis indices and add a jitter, </span></span>
+<span id="cb19-16"><a href="supervised-and-unsupervised-learning.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#proportional to the N in each level </span></span>
+<span id="cb19-17"><a href="supervised-and-unsupervised-learning.html#cb19-17" aria-hidden="true" tabindex="-1"></a>  myjitter   <span class="ot">&lt;-</span> <span class="fu">jitter</span>(<span class="fu">rep</span>(i, <span class="fu">length</span>(thisvalues)),              </span>
+<span id="cb19-18"><a href="supervised-and-unsupervised-learning.html#cb19-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">amount=</span>levelProportions[i]<span class="sc">/</span><span class="dv">2</span>) </span>
+<span id="cb19-19"><a href="supervised-and-unsupervised-learning.html#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(myjitter, thisvalues, </span>
+<span id="cb19-20"><a href="supervised-and-unsupervised-learning.html#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">pch=</span><span class="dv">20</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">9</span>)) </span>
+<span id="cb19-21"><a href="supervised-and-unsupervised-learning.html#cb19-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="_main_files/figure-html/bpage2%20-1.png" width="672" /></p>
+<p><strong>TRY IT YOURSELF:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Plot a scatter for the relation of <strong>bmi</strong> and <strong>bmd</strong>.</li>
+</ol>
+<details>
+<summary>
+See the solution code
+</summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="supervised-and-unsupervised-learning.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmd.data<span class="sc">$</span>bmi,bmd.data<span class="sc">$</span>bmd)</span></code></pre></div>
+<img src="_main_files/figure-html/xx1-1.png" width="672" />
+</details>
+<p>
+<p>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot a scatter for the relation of <strong>bmi</strong> and <strong>bmd</strong> with the dots
+painted by the variable <strong>sex</strong>.</li>
+</ol>
+<details>
+<summary>
+See the solution code
+</summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="supervised-and-unsupervised-learning.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmd.data<span class="sc">$</span>bmi,bmd.data<span class="sc">$</span>bmd, </span>
+<span id="cb21-2"><a href="supervised-and-unsupervised-learning.html#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">20</span>,</span>
+<span id="cb21-3"><a href="supervised-and-unsupervised-learning.html#cb21-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span> <span class="fu">ifelse</span>(bmd.data<span class="sc">$</span>sex<span class="sc">==</span><span class="st">&quot;M&quot;</span>,  <span class="co">#blue for males</span></span>
+<span id="cb21-4"><a href="supervised-and-unsupervised-learning.html#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;blue&quot;</span>,             <span class="co">#red for females</span></span>
+<span id="cb21-5"><a href="supervised-and-unsupervised-learning.html#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb21-6"><a href="supervised-and-unsupervised-learning.html#cb21-6" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb21-7"><a href="supervised-and-unsupervised-learning.html#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="supervised-and-unsupervised-learning.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
+<span id="cb21-9"><a href="supervised-and-unsupervised-learning.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,  </span>
+<span id="cb21-10"><a href="supervised-and-unsupervised-learning.html#cb21-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Males&quot;</span>,<span class="st">&quot;Females&quot;</span>), </span>
+<span id="cb21-11"><a href="supervised-and-unsupervised-learning.html#cb21-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,  <span class="st">&quot;red&quot;</span>), </span>
+<span id="cb21-12"><a href="supervised-and-unsupervised-learning.html#cb21-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">pt.cex=</span><span class="dv">3</span>, <span class="at">pch=</span><span class="dv">20</span> )</span></code></pre></div>
+<p><img src="_main_files/figure-html/xx2-1.png" width="672" /></p>
+</details>
+<p>
+<p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-accuracy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

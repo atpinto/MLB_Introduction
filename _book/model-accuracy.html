@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Model Accuracy | Machine Learning for Biostatistics</title>
+  <meta name="description" content="2 Model Accuracy | Machine Learning for Biostatistics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Model Accuracy | Machine Learning for Biostatistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Model Accuracy | Machine Learning for Biostatistics" />
+  
+  
+  
+
+<meta name="author" content="Armando Teixeira-Pinto" />
+
+
+<meta name="date" content="2021-07-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="supervised-and-unsupervised-learning.html"/>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="bca.png"><H3><b><font color="F26531"> Machine Learning for Biostatistics </font> </b></H3> <a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><small><i> Back to canvas website </i></small></a></center></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>What is machine learning?</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#datasets-used-in-the-examples"><i class="fa fa-check"></i>Datasets used in the examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html"><i class="fa fa-check"></i><b>1</b> Supervised and unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#readings"><i class="fa fa-check"></i><b>1.2</b> Readings</a></li>
+<li class="chapter" data-level="1.3" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#r-review"><i class="fa fa-check"></i><b>1.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-1---read-a-dataset-and-create-a-new-variable"><i class="fa fa-check"></i>Task 1 - Read a dataset and create a new variable</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-2---histogram"><i class="fa fa-check"></i>Task 2 - Histogram</a></li>
+<li class="chapter" data-level="" data-path="supervised-and-unsupervised-learning.html"><a href="supervised-and-unsupervised-learning.html#task-3---scatter-and-boxplot"><i class="fa fa-check"></i>Task 3 - Scatter and boxplot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-accuracy.html"><a href="model-accuracy.html"><i class="fa fa-check"></i><b>2</b> Model Accuracy</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.intro"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="model-accuracy.html"><a href="model-accuracy.html#maccuracy.read"><i class="fa fa-check"></i><b>2.2</b> Readings</a></li>
+<li class="chapter" data-level="2.3" data-path="model-accuracy.html"><a href="model-accuracy.html#R.02"><i class="fa fa-check"></i><b>2.3</b> R review</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-accuracy.html"><a href="model-accuracy.html#task-1---using-libraries"><i class="fa fa-check"></i><b>2.3.1</b> Task 1 - Using libraries</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-accuracy.html"><a href="model-accuracy.html#task-2---using-ggplot"><i class="fa fa-check"></i><b>2.3.2</b> Task 2 - Using ggplot</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-accuracy.html"><a href="model-accuracy.html#task-3---writing-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Task 3 - Writing a function</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><center><a href="https://canvas.sydney.edu.au/courses/35068" style="color:364550" target="blank"><img src="usyd2.gif" width="60%"></a> <small>© A.Teixeira-Pinto, University of Sydney, 2021</small></center></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning for Biostatistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-accuracy" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Model Accuracy</h1>
+<div id="maccuracy.intro" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>In <strong>machine learning</strong> there is a big emphasis in the prediction ability
+of the model. We will see several measures of performance for different methods
+but one commonly used measure (in particular when <span class="math inline">\(Y\)</span> is continuous) is the
+<strong>mean squared error (MSE)</strong>.</p>
+<p>The MSE is defined as:</p>
+<p><span class="math display">\[
+MSE = E \big[ (\hat{Y} - Y)^2 \big]
+\]</span></p>
+<p>where <span class="math inline">\(\hat{Y} = \hat f(\mathbf{X})\)</span>.</p>
+<p>We can estimate the MSE using the same data (training data)
+that we have used to obtain
+<span class="math inline">\(\hat f(\mathbf{X})\)</span> (the training MSE). If we have <span class="math inline">\(n\)</span> observations,</p>
+<p><span class="math display">\[
+y=
+\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots\\
+y_n
+\end{pmatrix}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+ \mathbf{x}=
+\begin{pmatrix}
+x_{11} &amp; \dots &amp; x_{p1} \\
+x_{12} &amp; \dots &amp; x_{p2} \\
+\vdots &amp; \vdots &amp; \vdots\\
+x_{1n} &amp; \dots &amp; x_{pn}
+\end{pmatrix}
+\]</span></p>
+<p>the estimate of MSE based on the data would then be:</p>
+<p><span class="math inline">\(MSE = \frac{1}{n} \sum_{i=1}^n \big(y_i - \hat f(x_{1i},\dots, x_{pi})\big)^2\\\)</span></p>
+<p>However, this MSE tends to overestimate the true predictive ability,
+given that the model is optimised to the training data. Ideally, we
+would like to evaluate the performance of the model
+in an independent dataset (test data) with <span class="math inline">\(y^{new}\)</span> and <span class="math inline">\(\mathbf{x}^{new}\)</span>.</p>
+<p>One important concept associated with the MSE that we will be talking later in
+the coming modules, is the <em>bias-variance tradeoff</em>. The MSE can be decomposed
+into <em>bias</em> and <em>variance</em>:</p>
+<p><span class="math display">\[\begin{equation}
+MSE  = \mathrm{E} \big[ (\hat{Y} - Y)^2 \big] \\
+ =\mathrm{E} \big(\hat{Y}^2\big) + \mathrm{E}\big(Y^2\big) - 2\mathrm{E}(\hat{Y}Y) \\  = \mathrm{E} \big(\hat{Y}^2\big) + Y^2 - 2Y\mathrm{E}(\hat{Y}) + \mathrm{E}^2(\hat{Y}) - \mathrm{E}^2(\hat{Y})\\
+ =\underbrace{ \big[\mathrm{E}(\hat{Y}) - Y \big]^2}_{bias^2} + \underbrace{\mathrm{E} \big(\hat{Y}^2\big) - \mathrm{E}^2(\hat{Y})}_{var(\hat{Y})}
+\end{equation}\]</span></p>
+<p>If we use a method that produces unbiased predictions for <span class="math inline">\(Y\)</span>, such as the
+ordinary least squares (OLS) for linear regression, then <span class="math inline">\(\mathrm{E}(\hat{Y}) - Y =0\)</span>.
+In this case, the MSE simplifies to the <span class="math inline">\(var(\hat{Y})\)</span>.</p>
+<p>We can see from the
+decomposition, that an unbiased estimation (prediction) of <span class="math inline">\(Y\)</span> does not lead
+necessarily to the lowest MSE possible. Once again, the OLS is a good example of
+this. In the case of high colinearity of the predictors <span class="math inline">\(\mathbf x\)</span>, we know that
+the OLS becomes quite “unstable” or in other words, the OLS will have a high
+variance. In this situation, it may be better to choose a different methods
+that can produce some bias but will have a much lower variance, resulting in a
+lower MSE. This is the case of the ridge estimator, as an alternative for the OLS when this estimator has high variance (we will talk about ridge regression in module 4).</p>
+<p>Several methods that we will discuss use this principle of exchanging variance
+for bias.</p>
+</div>
+<div id="maccuracy.read" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Readings</h2>
+<p>Read the following chapters of <em>An introduction to statistical learning</em>:</p>
+<ul>
+<li>2.2 <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf#page=42">Assessing Model Accuracy</a></li>
+</ul>
+</div>
+<div id="R.02" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> R review</h2>
+<div id="task-1---using-libraries" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Task 1 - Using libraries</h3>
+<p>Currently, there are more that 16,000 packages (also called libraries)
+available at CRAN (Comprehensive R Archive Network). Packages are the
+fundamental units of reproducible R code; they include reusable
+R functions, the documentation that describes how to use them, and sample data.</p>
+<p>We will install and use a library that produces tables similar to the ones used
+for publication. This library is called tableone`.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="model-accuracy.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tableone&quot;</span>, </span>
+<span id="cb22-2"><a href="model-accuracy.html#cb22-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">&quot;https://cran.rstudio.com/&quot;</span> ) <span class="co">#downloads the package</span></span></code></pre></div>
+<pre><code>## 
+## The downloaded binary packages are in
+##  /var/folders/nj/00dlv8r97qvczd7trdqw283w0000gn/T//RtmpMQkaK8/downloaded_packages</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="model-accuracy.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)            <span class="co">#loads the package</span></span></code></pre></div>
+<p>Read the <a href="https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1">bmd.csv</a>
+dataset in R and use the function <code>CreateTableOne()</code> from the package <code>tableone</code>
+to describe the variable <strong>age</strong>, <strong>bmd</strong> and <strong>sex</strong>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="model-accuracy.html#cb25-1" aria-hidden="true" tabindex="-1"></a>bmd.data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/7wjsfdaf0wt2kg2/bmd.csv?dl=1&quot;</span>)</span>
+<span id="cb25-2"><a href="model-accuracy.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;bmd&quot;</span>, <span class="st">&quot;sex&quot;</span>), <span class="at">data=</span>bmd.data)</span></code></pre></div>
+<pre><code>##                  
+##                   Overall      
+##   n                 169        
+##   age (mean (SD)) 63.63 (12.36)
+##   bmd (mean (SD))  0.78 (0.17) 
+##   sex = M (%)        86 (50.9)</code></pre>
+<p>Let’s repeat the table above but now stratified by fracture status (variable
+<strong>fracture</strong>)</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="model-accuracy.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CreateTableOne</span>(<span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;bmd&quot;</span>, <span class="st">&quot;sex&quot;</span>), <span class="at">data=</span>bmd.data, <span class="at">strata =</span> <span class="st">&quot;fracture&quot;</span>)</span></code></pre></div>
+<pre><code>##                  Stratified by fracture
+##                   fracture      no fracture   p      test
+##   n                  50           119                    
+##   age (mean (SD)) 69.77 (13.38) 61.05 (10.97) &lt;0.001     
+##   bmd (mean (SD))  0.62 (0.10)   0.85 (0.14)  &lt;0.001     
+##   sex = M (%)        25 (50.0)     61 (51.3)   1.000</code></pre>
+</div>
+<div id="task-2---using-ggplot" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Task 2 - Using ggplot</h3>
+<p><code>ggplot2</code> is a powerful library that implements a “grammar of graphics”
+developed by Wilkinson in 1999.</p>
+<p>There are seven grammatical elements:
+* Data - The dataset
+* Aesthetics -How the variables in the data are mapped to visual properties
+(aesthetics) of geoms
+* Geometries - The visual element used for plotting the data
+* Statistics - Representation of the data to help understand relationships
+* Facets - Split in multiple plots
+* Coordinates - Systems of coordinates
+* Themes - Color schemes, font sizes,….</p>
+<p>The combination of these elements, following certain rules, produces the plot</p>
+<p>Suppose we want to plot the scatter for <strong>bmd</strong> and <strong>age</strong>.</p>
+<p>First we get and load the library</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="model-accuracy.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>,</span>
+<span id="cb29-2"><a href="model-accuracy.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">&quot;https://cran.rstudio.com/&quot;</span> )</span></code></pre></div>
+<pre><code>## 
+## The downloaded binary packages are in
+##  /var/folders/nj/00dlv8r97qvczd7trdqw283w0000gn/T//RtmpMQkaK8/downloaded_packages</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="model-accuracy.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>We start by defining the data and aesthetics</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="model-accuracy.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmd.data, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bmd)) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>now, we add the geometry (in this case, dots)</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="model-accuracy.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmd.data, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bmd)) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="model-accuracy.html#cb33-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>let’s add a smooth line (statistics)</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="model-accuracy.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmd.data, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bmd)) <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="model-accuracy.html#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb34-3"><a href="model-accuracy.html#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stat_smooth</span>()  </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>and split by sex (facets)</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="model-accuracy.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmd.data, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bmd)) <span class="sc">+</span> </span>
+<span id="cb35-2"><a href="model-accuracy.html#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="model-accuracy.html#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stat_smooth</span>() <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="model-accuracy.html#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_grid</span>(sex<span class="sc">~</span>.)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Finally, change the theme</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="model-accuracy.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmd.data, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bmd)) <span class="sc">+</span> </span>
+<span id="cb36-2"><a href="model-accuracy.html#cb36-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="model-accuracy.html#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stat_smooth</span>() <span class="sc">+</span> </span>
+<span id="cb36-4"><a href="model-accuracy.html#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_grid</span>(sex<span class="sc">~</span>.) <span class="sc">+</span> </span>
+<span id="cb36-5"><a href="model-accuracy.html#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="task-3---writing-a-function" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Task 3 - Writing a function</h3>
+<p>Write a function that computes the Body Mass Index = weight(kg)/height<span class="math inline">\(^2\)</span>(m)
+using weight and height as arguments</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="model-accuracy.html#cb37-1" aria-hidden="true" tabindex="-1"></a>bmi.func <span class="ot">&lt;-</span> <span class="cf">function</span>(W, H){</span>
+<span id="cb37-2"><a href="model-accuracy.html#cb37-2" aria-hidden="true" tabindex="-1"></a>        bmi <span class="ot">&lt;-</span> W<span class="sc">/</span>H<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb37-3"><a href="model-accuracy.html#cb37-3" aria-hidden="true" tabindex="-1"></a>        bmi <span class="ot">&lt;-</span> <span class="fu">round</span>(bmi,<span class="dv">1</span>) <span class="co">#rounds 1 decimal place </span></span>
+<span id="cb37-4"><a href="model-accuracy.html#cb37-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="fu">paste</span>(<span class="st">&quot;The BMI is &quot;</span>, bmi))</span>
+<span id="cb37-5"><a href="model-accuracy.html#cb37-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>What is the BMI for an individual with 1.83m weighting 89Kg?</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="model-accuracy.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bmi.func</span>(<span class="dv">89</span>, <span class="fl">1.83</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;The BMI is  26.6&quot;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="supervised-and-unsupervised-learning.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

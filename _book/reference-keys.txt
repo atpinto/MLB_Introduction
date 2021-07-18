@@ -1,0 +1,11 @@
+supervised-and-unsupervised-learning
+introduction
+readings
+r-review
+model-accuracy
+maccuracy.intro
+maccuracy.read
+R.02
+task-1---using-libraries
+task-2---using-ggplot
+task-3---writing-a-function
